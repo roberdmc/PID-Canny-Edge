@@ -14,28 +14,30 @@ def plot_image(img, title, rows, columns, index, color='gray'):
     plt.axis('off')
     plt.title(title)
 
-#If input image have 3 channels, convert to 1 channel
-def convert_images(img, original_img):
+def convert_images(img):
+    #If input image have 3 channels, convert to 1 channel
     if len(img.shape) == 3:
         print("Found 3 Channels : {}".format(img.shape))
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        original_img = cv2.cvtColor(original_img, cv2.COLOR_BGR2RGB)
+        gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        original_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         print("Converted to Gray Channel. Size : {}".format(img.shape))
+        print()
+        return gray_img, original_img
     else:
         print("Image Shape : {}".format(img.shape))
-    print()
-    return img, original_img
+        print()
+        return img, img
 
 if __name__ == '__main__':
     #Default or user inputs
     default_input = True
     #Show step by step output images
-    verbose = False
+    verbose = True
 
     #Default input for tests
     if default_input:
         file = 'test.jpg'
-        kernel_shape = 15
+        kernel_shape = 9
     #User input
     else:
         print('\nInputs:')
@@ -44,10 +46,17 @@ if __name__ == '__main__':
         print('')
 
     #Read and convert image
-    img = cv2.imread(file)
-    original_img = img
-    gray_img, original_img = convert_images(img, original_img)
+    original_img = cv2.imread(file)
+    gray_img, original_img = convert_images(original_img)
 
+    #Print original image, if verbose
+    if verbose:
+        plt.imshow(original_img)
+        plt.title("Original image:")
+        plt.get_current_fig_manager().window.state('zoomed')
+        plt.axis('off')
+        plt.show()
+    
     #Processing filters
     gaussBlur_img, gauss_kernel = gaussian_blur(gray_img, kernel_shape, verbose=verbose)
     sobel_img, thetaMat = sobel_filters(gaussBlur_img, verbose=verbose)
