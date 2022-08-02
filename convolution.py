@@ -8,6 +8,7 @@ def convolution(image, kernel, average=False, verbose=False):
     if verbose:
         plt.imshow(image, cmap='gray')
         plt.title("Image")
+        plt.get_current_fig_manager().window.state('zoomed') #Toggle fullscreen mode
         plt.show()
  
     image_row, image_col = image.shape
@@ -25,6 +26,7 @@ def convolution(image, kernel, average=False, verbose=False):
     if verbose:
         plt.imshow(padded_image, cmap='gray')
         plt.title("Padded Image")
+        plt.get_current_fig_manager().window.state('zoomed') #Toggle fullscreen mode
         plt.show()
  
     for row in range(image_row):
@@ -38,6 +40,7 @@ def convolution(image, kernel, average=False, verbose=False):
     if verbose:
         plt.imshow(output, cmap='gray')
         plt.title("Output Image using {}X{} Gaussian Kernel".format(kernel_row, kernel_col))
+        plt.get_current_fig_manager().window.state('zoomed') #Toggle fullscreen mode
         plt.show()
  
     return output

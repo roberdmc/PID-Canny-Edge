@@ -20,6 +20,7 @@ def gaussian_kernel(size, sigma=1, verbose=False):
     if verbose:
         plt.imshow(kernel_2D, interpolation='none', cmap='gray')
         plt.title("Gaussian Kernel ( {}X{} )".format(size, size))
+        plt.get_current_fig_manager().window.state('zoomed') #Toggle fullscreen mode
         plt.show()
  
     return kernel_2D

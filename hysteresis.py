@@ -18,6 +18,7 @@ def hysteresis(img, weak, strong=255, verbose=False):
     if verbose:
         plt.imshow(img, cmap='gray')
         plt.title("Output for Hysteresis")
+        plt.get_current_fig_manager().window.state('zoomed') #Toggle fullscreen mode
         plt.show()
 
     print('Success Hysteresis\n')

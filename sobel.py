@@ -17,6 +17,7 @@ def sobel_filters(img, verbose=False):
     if verbose:
         plt.imshow(G, cmap='gray')
         plt.title("Output Image using sobel")
+        plt.get_current_fig_manager().window.state('zoomed') #Toggle fullscreen mode
         plt.show()
 
     print('Success Sobel\n')

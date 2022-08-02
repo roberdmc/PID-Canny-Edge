@@ -42,6 +42,7 @@ def non_max_suppression(img, D, verbose=False):
     if verbose:
         plt.imshow(Z, cmap='gray')
         plt.title("Output for Non-Max Supression")
+        plt.get_current_fig_manager().window.state('zoomed') #Toggle fullscreen mode
         plt.show()
     
     print('Success Non-Max Supression\n')

@@ -23,6 +23,7 @@ def threshold(img, lowThresholdRatio=0.05, highThresholdRatio=0.09, verbose=Fals
     if verbose:
         plt.imshow(res, cmap='gray')
         plt.title("Output for Threshold")
+        plt.get_current_fig_manager().window.state('zoomed') #Toggle fullscreen mode
         plt.show()
     
     print('Success Threshold\n')

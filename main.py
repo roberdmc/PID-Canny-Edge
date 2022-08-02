@@ -13,56 +13,61 @@ def plot_image(img, title, rows, columns, index, color='gray'):
     plt.axis('off')
     plt.title(title)
 
-def convert_images(image, original_image):
-    if len(image.shape) == 3:
-        print("Found 3 Channels : {}".format(image.shape))
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        original_image = cv2.cvtColor(original_image, cv2.COLOR_BGR2RGB)
-        print("Converted to Gray Channel. Size : {}".format(image.shape))
+def convert_images(img, original_img):
+    if len(img.shape) == 3:
+        print("Found 3 Channels : {}".format(img.shape))
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        original_img = cv2.cvtColor(original_img, cv2.COLOR_BGR2RGB)
+        print("Converted to Gray Channel. Size : {}".format(img.shape))
     else:
-        print("Image Shape : {}".format(image.shape))
+        print("Image Shape : {}".format(img.shape))
     print()
-    return image, original_image
+    return img, original_img
 
 if __name__ == '__main__':
-    print('\nInputs:')
-    file = input('Image path: ')
-    kernelShape = int(input('Gaussian Kernel shape: '))
-    print('')
+    default_input = True
 
-    image = cv2.imread(file)
-    original_image = image
+    if default_input:
+        file = 'test.jpg'
+        kernel_shape = 9
+    else:
+        print('\nInputs:')
+        file = input('Image path: ')
+        kernel_shape = int(input('Gaussian Kernel shape: '))
+        print('')
 
-    image, original_image = convert_images(image, original_image)
+    img = cv2.imread(file)
+    original_img = img
 
-    verbose = True
+    gray_img, original_img = convert_images(img, original_img)
+
+    verbose = False
     rows = 3
     columns = 3
 
-    plot_image(original_image, 'Original image:', rows, columns, 1)
-    plot_image(image, 'Grayscale image:', rows, columns, 2)
-
     print('Gaussian Blur:')
-    image, kernel = gaussian_blur(image, kernelShape, verbose=verbose)
-    plot_image(kernel, 'Gaussian Kernel:', rows, columns, 3)
-    plot_image(image, 'Gaussian Blur:', rows, columns, 4)
+    gaussBlur_img, gauss_kernel = gaussian_blur(gray_img, kernel_shape, verbose=verbose)
 
     print('Sobel:')
-    image, thetaMat = sobel_filters(image, verbose=verbose)
-    plot_image(image, 'Sobel:', rows, columns, 5)
+    sobel_img, thetaMat = sobel_filters(gaussBlur_img, verbose=verbose)
 
     print('Non-Max Suppression:')
-    image = non_max_suppression(image, thetaMat, verbose=verbose)
-    plot_image(image, 'Non-Max Suppression:', rows, columns, 6)
+    nms_img = non_max_suppression(sobel_img, thetaMat, verbose=verbose)
 
     print('Threshold:')
-    image, weak, strong = threshold(image, verbose=verbose)
-    plot_image(image, 'Threshold:', rows, columns, 7)
+    threshold_img, weak, strong = threshold(nms_img, verbose=verbose)
 
     print('Hysteresis:')
-    image = hysteresis(image, weak, strong, verbose=verbose)
-    plot_image(image, 'Hysteresis:', rows, columns, 8)
+    hysteresis_img = hysteresis(threshold_img, weak, strong, verbose=verbose)
 
-    plt.tight_layout(pad=2)
+    plot_image(original_img, 'Original:', rows, columns, 1)
+    plot_image(gray_img, 'Grayscale:', rows, columns, 2)
+    plot_image(gauss_kernel, 'Gaussian Kernel {}X{}:'.format(kernel_shape, kernel_shape), rows, columns, 3)
+    plot_image(gaussBlur_img, 'Gaussian Blur:', rows, columns, 4)
+    plot_image(sobel_img, 'Sobel:', rows, columns, 5)
+    plot_image(nms_img, 'Non-Max Suppression:', rows, columns, 6)
+    plot_image(threshold_img, 'Threshold:', rows, columns, 7)
+    plot_image(hysteresis_img, 'Hysteresis:', rows, columns, 8)
+    plt.tight_layout()
     plt.get_current_fig_manager().window.state('zoomed') #Toggle fullscreen mode
     plt.show()
