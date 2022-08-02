@@ -44,7 +44,7 @@ def convolution(image, kernel, average=False, verbose=False):
  
     if verbose:
         plt.imshow(output, cmap='gray')
-        plt.title("Output Image using {}X{} Kernel".format(kernel_row, kernel_col))
+        plt.title("Output Image using {}X{} Gaussian Kernel".format(kernel_row, kernel_col))
         plt.show()
  
     return output

@@ -4,6 +4,7 @@ import argparse
 import matplotlib.pyplot as plt
 import math
 from convolution import convolution
+from sobel import sobel_filters
 
 def dnorm(x, mu, sd):
     return 1 / (np.sqrt(2 * np.pi) * sd) * np.e ** (-np.power((x - mu) / sd, 2) / 2)
@@ -18,7 +19,7 @@ def gaussian_kernel(size, sigma=1, verbose=False):
  
     if verbose:
         plt.imshow(kernel_2D, interpolation='none', cmap='gray')
-        plt.title("Kernel ( {}X{} )".format(size, size))
+        plt.title("Gaussian Kernel ( {}X{} )".format(size, size))
         plt.show()
  
     return kernel_2D
@@ -26,10 +27,3 @@ def gaussian_kernel(size, sigma=1, verbose=False):
 def gaussian_blur(image, kernel_size, verbose=False):
     kernel = gaussian_kernel(kernel_size, sigma=math.sqrt(kernel_size), verbose=verbose)
     return convolution(image, kernel, average=True, verbose=verbose)
-
-if __name__ == '__main__': 
-    file = input('Input image: ')
-    kernelShape = int(input('Kernel shape: '))
-    image = cv2.imread(file)
- 
-    gaussian_blur(image, kernelShape, verbose=True)
