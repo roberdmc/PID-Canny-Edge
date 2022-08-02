@@ -19,4 +19,5 @@ def sobel_filters(img, verbose=False):
         plt.title("Output Image using sobel")
         plt.show()
 
+    print('Success Sobel\n')
     return (G, theta)

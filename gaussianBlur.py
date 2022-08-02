@@ -26,4 +26,6 @@ def gaussian_kernel(size, sigma=1, verbose=False):
 
 def gaussian_blur(image, kernel_size, verbose=False):
     kernel = gaussian_kernel(kernel_size, sigma=math.sqrt(kernel_size), verbose=verbose)
-    return convolution(image, kernel, average=True, verbose=verbose)
+    image = convolution(image, kernel, average=True, verbose=verbose)
+    print('Success Gaussian Blur\n')
+    return image

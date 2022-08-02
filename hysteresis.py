@@ -20,4 +20,5 @@ def hysteresis(img, weak, strong=255, verbose=False):
         plt.title("Output for Hysteresis")
         plt.show()
 
+    print('Success Hysteresis\n')
     return img

@@ -44,4 +44,5 @@ def non_max_suppression(img, D, verbose=False):
         plt.title("Output for Non-Max Supression")
         plt.show()
     
+    print('Success Non-Max Supression\n')
     return Z

@@ -25,4 +25,5 @@ def threshold(img, lowThresholdRatio=0.05, highThresholdRatio=0.09, verbose=Fals
         plt.title("Output for Threshold")
         plt.show()
     
+    print('Success Threshold\n')
     return (res, weak, strong)
