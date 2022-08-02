@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 from convolution import convolution
 
 def sobel_filters(img, verbose=False):
+    print('Sobel:')
+    
     Kx = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]], np.float32)
     Ky = np.array([[1, 2, 1], [0, 0, 0], [-1, -2, -1]], np.float32)
     

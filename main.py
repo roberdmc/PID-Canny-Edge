@@ -7,12 +7,14 @@ from nonMaxSupression import non_max_suppression
 from threshold import threshold
 from hysteresis import hysteresis
 
+#Configure images for final plot
 def plot_image(img, title, rows, columns, index, color='gray'):
     plt.subplot(rows, columns, index)
     plt.imshow(img, cmap=color)
     plt.axis('off')
     plt.title(title)
 
+#If input image have 3 channels, convert to 1 channel
 def convert_images(img, original_img):
     if len(img.shape) == 3:
         print("Found 3 Channels : {}".format(img.shape))
@@ -25,8 +27,11 @@ def convert_images(img, original_img):
     return img, original_img
 
 if __name__ == '__main__':
+    #Definition for tests
     default_input = True
+    verbose = False
 
+    #Inputs
     if default_input:
         file = 'test.jpg'
         kernel_shape = 9
@@ -36,30 +41,21 @@ if __name__ == '__main__':
         kernel_shape = int(input('Gaussian Kernel shape: '))
         print('')
 
+    #Read and convert
     img = cv2.imread(file)
     original_img = img
-
     gray_img, original_img = convert_images(img, original_img)
 
-    verbose = False
-    rows = 3
-    columns = 3
-
-    print('Gaussian Blur:')
+    #Processing filters
     gaussBlur_img, gauss_kernel = gaussian_blur(gray_img, kernel_shape, verbose=verbose)
-
-    print('Sobel:')
     sobel_img, thetaMat = sobel_filters(gaussBlur_img, verbose=verbose)
-
-    print('Non-Max Suppression:')
     nms_img = non_max_suppression(sobel_img, thetaMat, verbose=verbose)
-
-    print('Threshold:')
     threshold_img, weak, strong = threshold(nms_img, verbose=verbose)
-
-    print('Hysteresis:')
     hysteresis_img = hysteresis(threshold_img, weak, strong, verbose=verbose)
 
+    #Plot all output images
+    rows = 3
+    columns = 3
     plot_image(original_img, 'Original:', rows, columns, 1)
     plot_image(gray_img, 'Grayscale:', rows, columns, 2)
     plot_image(gauss_kernel, 'Gaussian Kernel {}X{}:'.format(kernel_shape, kernel_shape), rows, columns, 3)

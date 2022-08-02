@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 
 def hysteresis(img, weak, strong=255, verbose=False):
+    print('Hysteresis:')
+    
     M, N = img.shape  
     for i in range(1, M-1):
         for j in range(1, N-1):

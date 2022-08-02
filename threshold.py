@@ -2,7 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def threshold(img, lowThresholdRatio=0.05, highThresholdRatio=0.09, verbose=False):
-    
+    print('Threshold:')
+
     highThreshold = img.max() * highThresholdRatio;
     lowThreshold = highThreshold * lowThresholdRatio;
     

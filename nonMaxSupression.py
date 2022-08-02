@@ -2,6 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def non_max_suppression(img, D, verbose=False):
+    print('Non-Max Suppression:')
+    
     M, N = img.shape
     Z = np.zeros((M,N), dtype=np.int32)
     angle = D * 180. / np.pi
