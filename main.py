@@ -27,21 +27,23 @@ def convert_images(img, original_img):
     return img, original_img
 
 if __name__ == '__main__':
-    #Definition for tests
+    #Default or user inputs
     default_input = True
+    #Show step by step output images
     verbose = False
 
-    #Inputs
+    #Default input for tests
     if default_input:
         file = 'test.jpg'
-        kernel_shape = 9
+        kernel_shape = 15
+    #User input
     else:
         print('\nInputs:')
         file = input('Image path: ')
         kernel_shape = int(input('Gaussian Kernel shape: '))
         print('')
 
-    #Read and convert
+    #Read and convert image
     img = cv2.imread(file)
     original_img = img
     gray_img, original_img = convert_images(img, original_img)
