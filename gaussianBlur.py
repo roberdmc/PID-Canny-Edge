@@ -6,10 +6,6 @@ import math
 from convolution import convolution
 from sobel import sobel_filters
 
-#Equation for points of Gaussian kernel, using Univariate Normal Distribution
-def dnorm(x, mu, sd):
-    return 1 / (np.sqrt(2 * np.pi) * sd) * np.e ** (-np.power((x - mu) / sd, 2) / 2)
-
 def gaussian_kernel(size, sigma=1, verbose=False):
     #Initialize kernel vector with 0.0
     kernel = np.zeros((size, size), np.float32)
