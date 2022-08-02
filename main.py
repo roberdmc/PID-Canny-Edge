@@ -35,31 +35,33 @@ if __name__ == '__main__':
 
     image, original_image = convert_images(image, original_image)
 
-    verbose = False
-    rows = 2
+    verbose = True
+    rows = 3
     columns = 3
 
     plot_image(original_image, 'Original image:', rows, columns, 1)
+    plot_image(image, 'Grayscale image:', rows, columns, 2)
 
     print('Gaussian Blur:')
-    image = gaussian_blur(image, kernelShape, verbose=verbose)
-    plot_image(image, 'Gaussian Blur:', rows, columns, 2)
+    image, kernel = gaussian_blur(image, kernelShape, verbose=verbose)
+    plot_image(kernel, 'Gaussian Kernel:', rows, columns, 3)
+    plot_image(image, 'Gaussian Blur:', rows, columns, 4)
 
     print('Sobel:')
     image, thetaMat = sobel_filters(image, verbose=verbose)
-    plot_image(image, 'Sobel:', rows, columns, 3)
+    plot_image(image, 'Sobel:', rows, columns, 5)
 
     print('Non-Max Suppression:')
     image = non_max_suppression(image, thetaMat, verbose=verbose)
-    plot_image(image, 'Non-Max Suppression:', rows, columns, 4)
+    plot_image(image, 'Non-Max Suppression:', rows, columns, 6)
 
     print('Threshold:')
     image, weak, strong = threshold(image, verbose=verbose)
-    plot_image(image, 'Threshold:', rows, columns, 5)
+    plot_image(image, 'Threshold:', rows, columns, 7)
 
     print('Hysteresis:')
     image = hysteresis(image, weak, strong, verbose=verbose)
-    plot_image(image, 'Hysteresis:', rows, columns, 6)
+    plot_image(image, 'Hysteresis:', rows, columns, 8)
 
     plt.tight_layout(pad=2)
     plt.get_current_fig_manager().window.state('zoomed') #Toggle fullscreen mode

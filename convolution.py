@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 def convolution(image, kernel, average=False, verbose=False):
     print("Kernel Shape : {}".format(kernel.shape))
- 
+    
     if verbose:
         plt.imshow(image, cmap='gray')
         plt.title("Image")
