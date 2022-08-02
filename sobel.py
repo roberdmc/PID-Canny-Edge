@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from convolution import convolution
 
 def sobel_filters(img, verbose=False):
-    print('Sobel:')
+    print('Start Sobel:')
     
     #Define sobel horizontal and vertical filters
     Kx = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]], np.float32)
@@ -14,10 +14,10 @@ def sobel_filters(img, verbose=False):
     Ix = convolution(img, Kx)
     Iy = convolution(img, Ky)
     
-    #Obtain magnitude of the gradient, uniting sobel x and y, using hypotenuse for the right angled triangle
-    G = np.hypot(Ix, Iy)
+    #Obtain magnitude of the gradient, combining vertical and horizontal edges 
+    G = np.sqrt(np.square(Ix) + np.square(Iy))
+    #Normalizing output to be between 0 and 255
     G = G / G.max() * 255
-    
     #Store the slope of the gradient
     theta = np.arctan2(Iy, Ix)
 
@@ -36,5 +36,5 @@ def sobel_filters(img, verbose=False):
         plt.get_current_fig_manager().window.state('zoomed') #Toggle fullscreen mode
         plt.show()
 
-    print('Success Sobel\n')
-    return (G, theta)
+    print('Finish Sobel!\n')
+    return (G, theta, Ix, Iy)

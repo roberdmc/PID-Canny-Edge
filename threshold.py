@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def threshold(img, lowThresholdRatio=0.05, highThresholdRatio=0.09, verbose=False):
-    print('Double Thresholding:')
+    print('Start Double Thresholding:')
 
     #Used to identify the strong pixels
     highThreshold = img.max() * highThresholdRatio;
@@ -35,5 +35,5 @@ def threshold(img, lowThresholdRatio=0.05, highThresholdRatio=0.09, verbose=Fals
         plt.get_current_fig_manager().window.state('zoomed') #Toggle fullscreen mode
         plt.show()
     
-    print('Success Double Thresholding\n')
+    print('Finish Double Thresholding!\n')
     return (res, weak, strong)

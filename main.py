@@ -32,12 +32,12 @@ if __name__ == '__main__':
     #Default or user inputs
     default_input = True
     #Show step by step output images
-    verbose = True
+    verbose = False
 
     #Default input for tests
     if default_input:
-        file = 'test.jpg'
-        kernel_shape = 9
+        file = 'lena.png'
+        kernel_shape = 5
     #User input
     else:
         print('\nInputs:')
@@ -59,22 +59,24 @@ if __name__ == '__main__':
     
     #Processing filters
     gaussBlur_img, gauss_kernel = gaussian_blur(gray_img, kernel_shape, verbose=verbose)
-    sobel_img, thetaMat = sobel_filters(gaussBlur_img, verbose=verbose)
+    sobel_img, thetaMat, sobel_x, sobel_y = sobel_filters(gaussBlur_img, verbose=verbose)
     nms_img = non_max_suppression(sobel_img, thetaMat, verbose=verbose)
     threshold_img, weak, strong = threshold(nms_img, verbose=verbose)
     hysteresis_img = hysteresis(threshold_img, weak, strong, verbose=verbose)
 
     #Plot all output images
     rows = 3
-    columns = 3
+    columns = 4
     plot_image(original_img, 'Original:', rows, columns, 1)
     plot_image(gray_img, 'Grayscale:', rows, columns, 2)
     plot_image(gauss_kernel, 'Gaussian Kernel {}X{}:'.format(kernel_shape, kernel_shape), rows, columns, 3)
     plot_image(gaussBlur_img, 'Gaussian Blur:', rows, columns, 4)
-    plot_image(sobel_img, 'Sobel:', rows, columns, 5)
-    plot_image(nms_img, 'Non-Max Suppression:', rows, columns, 6)
-    plot_image(threshold_img, 'Threshold:', rows, columns, 7)
-    plot_image(hysteresis_img, 'Hysteresis:', rows, columns, 8)
+    plot_image(sobel_x, 'Horizontal Sobel:', rows, columns, 5)
+    plot_image(sobel_y, 'Vertical Sobel:', rows, columns, 6)
+    plot_image(sobel_img, 'Final Sobel:', rows, columns, 7)
+    plot_image(nms_img, 'Non-Max Suppression:', rows, columns, 8)
+    plot_image(threshold_img, 'Double Thresholding:', rows, columns, 9)
+    plot_image(hysteresis_img, 'Hysteresis:', rows, columns, 10)
     plt.tight_layout()
     plt.get_current_fig_manager().window.state('zoomed') #Toggle fullscreen mode
     plt.show()

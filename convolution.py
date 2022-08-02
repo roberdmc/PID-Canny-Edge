@@ -8,8 +8,8 @@ def convolution(image, kernel, average=False, verbose=False):
     #Print grayscale image
     if verbose:
         plt.imshow(image, cmap='gray')
-        plt.title("Image")
-        plt.get_current_fig_manager().window.state('zoomed') #Toggle fullscreen mode
+        plt.title("Grayscale image")
+        plt.get_current_fig_manager().window.state('zoomed')
         plt.show()
  
     #Define the sizes of kernel and submatrix of image

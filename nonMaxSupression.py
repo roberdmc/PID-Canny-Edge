@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def non_max_suppression(img, D, verbose=False):
-    print('Non-Max Suppression:')
+    print('Start Non-Max Suppression:')
     
     M, N = img.shape
     
@@ -50,5 +50,5 @@ def non_max_suppression(img, D, verbose=False):
         plt.get_current_fig_manager().window.state('zoomed') #Toggle fullscreen mode
         plt.show()
     
-    print('Success Non-Max Supression\n')
+    print('Finish Non-Max Supression!\n')
     return Z

@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 def hysteresis(img, weak, strong=255, verbose=False):
-    print('Edge Tracking by Hysteresis:')
+    print('Start Edge Tracking by Hysteresis:')
     
     M, N = img.shape
     
@@ -28,5 +28,5 @@ def hysteresis(img, weak, strong=255, verbose=False):
         plt.get_current_fig_manager().window.state('zoomed') #Toggle fullscreen mode
         plt.show()
 
-    print('Success Edge Tracking by Hysteresis\n')
+    print('Finish Edge Tracking by Hysteresis!\n')
     return img

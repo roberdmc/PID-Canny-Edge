@@ -29,10 +29,10 @@ def gaussian_kernel(size, sigma=1, verbose=False):
     return kernel
 
 def gaussian_blur(image, kernel_size, verbose=False):
-    print('Gaussian Blur:')
+    print('Start Gaussian Blur:')
     #Generate kernel
     kernel = gaussian_kernel(kernel_size, sigma=math.sqrt(kernel_size), verbose=verbose)
     #Operate image with kernel 
     image = convolution(image, kernel, verbose=verbose)
-    print('Success Gaussian Blur\n')
+    print('Finish Gaussian Blur!\n')
     return image, kernel
