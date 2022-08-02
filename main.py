@@ -20,7 +20,7 @@ def convert_images(img):
         print("Found 3 Channels : {}".format(img.shape))
         gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         original_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        print("Converted to Gray Channel. Size : {}".format(img.shape))
+        print("Converted to Gray Channel. Size : {}".format(gray_img.shape))
         print()
         return gray_img, original_img
     else:
@@ -73,10 +73,11 @@ if __name__ == '__main__':
     plot_image(gaussBlur_img, 'Gaussian Blur:', rows, columns, 4)
     plot_image(sobel_x, 'Horizontal Sobel:', rows, columns, 5)
     plot_image(sobel_y, 'Vertical Sobel:', rows, columns, 6)
-    plot_image(sobel_img, 'Final Sobel:', rows, columns, 7)
+    plot_image(sobel_img, 'Sobel edge detection:', rows, columns, 7)
     plot_image(nms_img, 'Non-Max Suppression:', rows, columns, 8)
     plot_image(threshold_img, 'Double Thresholding:', rows, columns, 9)
-    plot_image(hysteresis_img, 'Hysteresis:', rows, columns, 10)
+    plot_image(hysteresis_img, 'Edge Tracking by Hysteresis:', rows, columns, 10)
     plt.tight_layout()
     plt.get_current_fig_manager().window.state('zoomed') #Toggle fullscreen mode
     plt.show()
+    

@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from convolution import convolution
 
 def sobel_filters(img, verbose=False):
-    print('Start Sobel:')
+    print('Start Sobel edge detection:')
     
     #Define sobel horizontal and vertical filters
     Kx = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]], np.float32)
@@ -36,5 +36,5 @@ def sobel_filters(img, verbose=False):
         plt.get_current_fig_manager().window.state('zoomed') #Toggle fullscreen mode
         plt.show()
 
-    print('Finish Sobel!\n')
+    print('Finish Sobel edge detection!\n')
     return (G, theta, Ix, Iy)

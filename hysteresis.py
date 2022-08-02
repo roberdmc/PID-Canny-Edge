@@ -1,9 +1,13 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
-def hysteresis(img, weak, strong=255, verbose=False):
+def hysteresis(image, weak, strong=255, verbose=False):
     print('Start Edge Tracking by Hysteresis:')
     
-    M, N = img.shape
+    M, N = image.shape
+    img = np.zeros((M,N), dtype=np.int32)
+    
+    img += image
     
     #Transforms weak pixels into strong, if at least one of the pixels around is strong
     for i in range(1, M-1):
