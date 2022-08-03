@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from convolution import convolution
 
+#Gradient calculation, to detect the edge intensity and direction
 def sobel_filters(img, verbose=False):
     print('Start Sobel edge detection:')
     

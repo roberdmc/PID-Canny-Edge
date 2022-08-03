@@ -36,7 +36,7 @@ if __name__ == '__main__':
 
     #Default input for tests
     if default_input:
-        file = 'lena.png'
+        file = 'trash.png'
         kernel_shape = 5
     #User input
     else:

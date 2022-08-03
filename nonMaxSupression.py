@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+#Thin out the edges, finds the pixels with the maximum value in the edge directions
 def non_max_suppression(img, D, verbose=False):
     print('Start Non-Max Suppression:')
     
@@ -35,6 +36,7 @@ def non_max_suppression(img, D, verbose=False):
                     q = img[i-1, j-1]
                     r = img[i+1, j+1]
 
+                #Save the pixel of maximum value and discard the others
                 if (img[i,j] >= q) and (img[i,j] >= r):
                     Z[i,j] = img[i,j]
                 else:
