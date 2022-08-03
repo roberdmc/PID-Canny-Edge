@@ -17,14 +17,15 @@ def plot_image(img, title, rows, columns, index, color='gray'):
 def convert_images(img):
     #If input image have 3 channels, convert to 1 channel
     if len(img.shape) == 3:
-        print("Found 3 Channels : {}".format(img.shape))
+        print("Found 3 Channels: {}".format(img.shape))
         gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         original_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        print("Converted to Gray Channel. Size : {}".format(gray_img.shape))
+        print("Converted to Gray Channel")
+        print("Output image size: {}".format(gray_img.shape))
         print()
         return gray_img, original_img
     else:
-        print("Image Shape : {}".format(img.shape))
+        print("Image Shape: {}".format(img.shape))
         print()
         return img, img
 
