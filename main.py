@@ -6,14 +6,8 @@ from gaussianBlur import gaussian_blur
 from nonMaxSupression import non_max_suppression
 from threshold import threshold
 from hysteresis import hysteresis
-import tkinter as tk
 from tkinter import filedialog
 import os
-
-
-
-
-
 
 #Configure images for final plot
 def plot_image(img, title, rows, columns, index, color='gray'):
@@ -22,8 +16,9 @@ def plot_image(img, title, rows, columns, index, color='gray'):
     plt.axis('off')
     plt.title(title)
 
+
+#If input image have 3 channels, convert to 1 channel
 def convert_images(img):
-    #If input image have 3 channels, convert to 1 channel
     if len(img.shape) == 3:
         print("Found 3 Channels: {}".format(img.shape))
         gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -37,21 +32,18 @@ def convert_images(img):
         print()
         return img, img
 
+#Main function
 if __name__ == '__main__':
-    
-    root = tk.Tk()
-    root.withdraw()
-    
-    file_name = filedialog.askopenfilename()
-    file_name = file_name.replace('/', '\\')
-
-    #Show step by step output images
+    #If True, show step by step output images
     verbose = False
 
-    print('\nInputs:')
-    file = file_name
-    kernel_shape = int(input('Gaussian Kernel shape: '))
-    print('')
+    #User inputs
+    print('\nStart of inputs:')
+    #Read image path with dialog
+    file = filedialog.askopenfilename()
+    #Read shape of gaussian kernel
+    kernel_shape = int(input('Enter the Gaussian Kernel shape: '))
+    print('End of inputs!\n')
 
     #Read and convert image
     original_img = cv2.imread(file)

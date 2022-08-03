@@ -3,7 +3,7 @@ import cv2
 import matplotlib.pyplot as plt
 
 def convolution(image, kernel, average=False, verbose=False):
-    print("Kernel Shape : {}".format(kernel.shape))
+    print("Kernel Shape: {}".format(kernel.shape))
     
     #Print grayscale image
     if verbose:
@@ -42,7 +42,7 @@ def convolution(image, kernel, average=False, verbose=False):
                 output[row, col] /= kernel.shape[0] * kernel.shape[1]
  
     #Print output image size, for validation
-    print("Output Image size : {}".format(output.shape))
+    print("Output Image size: {}".format(output.shape))
  
     #Print output image
     if verbose:
