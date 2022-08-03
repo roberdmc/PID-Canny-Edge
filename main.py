@@ -6,6 +6,14 @@ from gaussianBlur import gaussian_blur
 from nonMaxSupression import non_max_suppression
 from threshold import threshold
 from hysteresis import hysteresis
+import tkinter as tk
+from tkinter import filedialog
+import os
+
+
+
+
+
 
 #Configure images for final plot
 def plot_image(img, title, rows, columns, index, color='gray'):
@@ -30,21 +38,20 @@ def convert_images(img):
         return img, img
 
 if __name__ == '__main__':
-    #Default or user inputs
-    default_input = True
+    
+    root = tk.Tk()
+    root.withdraw()
+    
+    file_name = filedialog.askopenfilename()
+    file_name = file_name.replace('/', '\\')
+
     #Show step by step output images
     verbose = False
 
-    #Default input for tests
-    if default_input:
-        file = 'trash.png'
-        kernel_shape = 5
-    #User input
-    else:
-        print('\nInputs:')
-        file = input('Image path: ')
-        kernel_shape = int(input('Gaussian Kernel shape: '))
-        print('')
+    print('\nInputs:')
+    file = file_name
+    kernel_shape = int(input('Gaussian Kernel shape: '))
+    print('')
 
     #Read and convert image
     original_img = cv2.imread(file)
