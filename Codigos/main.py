@@ -43,7 +43,11 @@ if __name__ == '__main__':
     file = filedialog.askopenfilename()
     #Read shape of gaussian kernel
     kernel_shape = int(input('Enter the Gaussian Kernel shape: '))
+    step_by_step = int(input('Enter 1 to show the step by step, or 0 to show only final plot: '))
     print('End of inputs!\n')
+
+    if(step_by_step == 1):
+        verbose = True
 
     #Read and convert image
     original_img = cv2.imread(file)
