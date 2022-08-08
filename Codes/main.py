@@ -37,13 +37,16 @@ if __name__ == '__main__':
     #If True, show step by step output images
     verbose = False
 
+    #Title on terminal
+    print("\n--- Canny Edge Detection ---\n")
+
     #User inputs
-    print('\nStart of inputs:')
+    print('Start of inputs:')
     #Read image path with dialog
     file = filedialog.askopenfilename()
     #Read shape of gaussian kernel
     kernel_shape = int(input('Enter the Gaussian Kernel shape: '))
-    step_by_step = int(input('Enter 1 to show the step by step, or 0 to show only final plot: '))
+    step_by_step = int(input('Enter 1 to display step-by-step plots, or 0 to show final plot only: '))
     print('End of inputs!\n')
 
     if(step_by_step == 1):
@@ -77,7 +80,7 @@ if __name__ == '__main__':
     plot_image(gaussBlur_img, 'Gaussian Blur:', rows, columns, 4)
     plot_image(sobel_x, 'Horizontal Sobel:', rows, columns, 5)
     plot_image(sobel_y, 'Vertical Sobel:', rows, columns, 6)
-    plot_image(sobel_img, 'Sobel edge detection:', rows, columns, 7)
+    plot_image(sobel_img, 'Sobel Edge Detection:', rows, columns, 7)
     plot_image(nms_img, 'Non-Max Suppression:', rows, columns, 8)
     plot_image(threshold_img, 'Double Thresholding:', rows, columns, 9)
     plot_image(hysteresis_img, 'Edge Tracking by Hysteresis:', rows, columns, 10)

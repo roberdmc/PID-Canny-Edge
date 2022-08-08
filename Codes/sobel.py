@@ -5,7 +5,7 @@ from convolution import convolution
 
 #Gradient calculation, to detect the edge intensity and direction
 def sobel_filters(img, verbose=False):
-    print('Start Sobel edge detection:')
+    print('Start Sobel Edge Detection:')
     
     #Define sobel horizontal and vertical filters
     Kx = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]], np.float32)
@@ -25,17 +25,17 @@ def sobel_filters(img, verbose=False):
     #Print output images
     if verbose:
         plt.imshow(Ix, cmap='gray')
-        plt.title("Output Image using sobel horizontal")
+        plt.title("Output Image using Sobel Horizontal")
         plt.get_current_fig_manager().window.state('zoomed') #Toggle fullscreen mode
         plt.show()
         plt.imshow(Iy, cmap='gray')
-        plt.title("Output Image using sobel vertical")
+        plt.title("Output Image using Sobel Vertical")
         plt.get_current_fig_manager().window.state('zoomed') #Toggle fullscreen mode
         plt.show()
         plt.imshow(G, cmap='gray')
-        plt.title("Output Image using sobel united")
+        plt.title("Output Image using Sobel Edge Detection")
         plt.get_current_fig_manager().window.state('zoomed') #Toggle fullscreen mode
         plt.show()
 
-    print('Finish Sobel edge detection!\n')
+    print('Finish Sobel Edge Detection!\n')
     return (G, theta, Ix, Iy)

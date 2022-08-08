@@ -1,3 +1,3 @@
 @echo off
-python Codigos/main.py %*
+python Codes/main.py %*
 pause
